@@ -77,5 +77,8 @@ def run_command(command_config, cleaned_data, user):
         # display it to the user
         output = StringIO()
         kwargs['stdout'] = output
-        management.call_command(command_config.command_name(), *args, **kwargs)
+        try:
+            management.call_command(command_config.command_name(), *args, **kwargs)
+        except Exception as e:
+            return f"Sucedió una excepción: {e!r}"
         return output.getvalue()

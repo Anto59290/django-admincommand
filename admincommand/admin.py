@@ -69,7 +69,7 @@ class AdminCommandAdmin(SneakAdmin):
         }
 
         if request.method == 'POST':
-            form = admin_command.form(request.POST)
+            form = admin_command.form(request.POST, request.FILES)
             if form.is_valid():
                 coreponse = core.run_command(
                     admin_command,
